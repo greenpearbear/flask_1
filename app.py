@@ -1,6 +1,5 @@
 from flask import Flask, render_template
 import use_data
-import logging
 
 app = Flask(__name__)
 
