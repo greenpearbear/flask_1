@@ -108,7 +108,10 @@ def post_sort(all_post, search_string):
     """
     data_return = []
     for i in reversed(all_post):
-        if search_string.lower() in i.content.lower().split():
+        list_content = i.content.lower().split()
+        for index in range(len(list_content)):
+            list_content[index] = "".join(c for c in list_content[index] if c.isalnum())
+        if search_string.lower() in list_content:
             data_return.append(i)
             if len(data_return) == 10:
                 break

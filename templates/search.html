@@ -26,7 +26,11 @@
   <main class="container">
     <div class="search">
       <form  method="POST" class="search__form">
-        <input type="search" class="search__input" placeholder="Введите слово и нажмите Enter" name="search_string">
+          {% if not word %}
+              <input type="search" class="search__input" placeholder="Введите слово и нажмите Enter" name="search_string">
+          {% else %}
+              <input type="search" class="search__input" placeholder="Введите слово и нажмите Enter" name="search_string" value="{{ word }}">
+          {% endif %}
       </form>
         {% if data %}
             <p class="search__results">Найдено постов: {{ len }}</p>

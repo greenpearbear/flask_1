@@ -41,7 +41,8 @@ def search():
     if request.method == 'POST':
         data_output = use_data.post_sort(data[0], str(request.form.get('search_string')))
         comments = use_data.only_need_data(use_data.read_json()[1])
-        return render_template('search.html', data=data_output, len=len(data_output), comments=comments)
+        return render_template('search.html', data=data_output, len=len(data_output), comments=comments,
+                               word=str(request.form.get('search_string')))
 
 
 @app.route('/user-feed.html')
