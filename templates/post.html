@@ -47,22 +47,18 @@
         </div>
         <div class="item__bottom">
           <div class="item__post-info">
-            <p class="item__comments-counter">3 комментария</p>
+                <p class="item__comments-counter">{{ all_comments }}</p>
             <div class="item__counter">
               <img src="/static/img/eye.png" alt="" class="item__counter-icon" width="26">
               <span class="item__counter-text">{{ data.views }}</span>
             </div>
           </div>
           <div class="item__comments">
+              {% for name, content in comments.items() %}
             <p class="item__comment">
-              <b>user 1:</b> комментарий пользователя который его оставил
+              <b>{{ name }}:</b> {{ content }}
             </p>
-            <p class="item__comment">
-              <b>user 2:</b> еще один комментарий
-            </p>
-            <p class="item__comment">
-              <b>user 3:</b> и&nbsp;какой-то коммент еще
-            </p>
+              {% endfor %}
           </div>
           <form action="/" class="item__comment-form comment-form">
             <div class="comment-form__input-wrap">

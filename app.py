@@ -16,7 +16,12 @@ def post(uid):
     data = use_data.read_json()
     for i in data[0]:
         if i.id == int(uid):
-            return render_template('post.html', data=i)
+            comments = use_data.comments_sort(int(uid), data[1])
+            count_comments = use_data.only_need_data(use_data.read_json()[1])
+            if int(uid) in count_comments:
+                return render_template('post.html', data=i, comments=comments, all_comments=count_comments[int(uid)])
+            else:
+                return render_template('post.html', data=i, comments=comments, all_comments="Нет комментариев")
 
 
 @app.route('/bookmarks.html')

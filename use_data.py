@@ -56,8 +56,8 @@ def read_json():
 def only_need_data(data):
     """
     Функция откидывает текст комментариев и имя пользователя, что их оставил.
-    Возвращает список из id поста и количества комментариев к нему.
     Используем библиотеку pymorphy2 для подбора существительных после числительных.
+    Возвращает список из id поста и количества комментариев к нему.
     """
     data_dict = {}
     k = 1
@@ -70,3 +70,15 @@ def only_need_data(data):
     for i in data_dict.keys():
         data_dict[i] = f'{data_dict[i]} {comment.make_agree_with_number(data_dict[i]).word}'
     return data_dict
+
+
+def comments_sort(index, data):
+    """
+    Функция принимает id поста, а также все комментарии.
+    Создает словарь из комментариев которые относятся к посту с id, и возвращает его.
+    """
+    data_return = {}
+    for k in data:
+        if k.id == index:
+            data_return.update({k.name: k.content})
+    return data_return
