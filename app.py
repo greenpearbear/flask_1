@@ -32,6 +32,12 @@ def post(uid):
         return redirect(f'/post.html/{uid}')
 
 
+@app.route('/search/')
+def search():
+    return render_template('search.html')
+
+
+
 @app.route('/bookmarks.html')
 def bookmarks():
     return render_template('bookmarks.html')
