@@ -1,6 +1,5 @@
 import json
 import pymorphy2
-morph = pymorphy2.MorphAnalyzer()
 
 
 def create_class(profile, comments):
@@ -59,6 +58,7 @@ def only_need_data(data):
     Используем библиотеку pymorphy2 для подбора существительных после числительных.
     Возвращает список из id поста и количества комментариев к нему.
     """
+    morph = pymorphy2.MorphAnalyzer()
     data_dict = {}
     k = 1
     comment = morph.parse('комментарий')[0]
@@ -105,6 +105,7 @@ def post_sort(all_post, search_string):
     Функция принимает все посты, и слово отправленное формой POST.
     Идя с последних постов ищет вхождение слова в описание постов с ограничением на вывод 10 постов.
     Возвращает список объектов класса Post.
+    Также идет проверка на наличие символов в притык(например еда!)
     """
     data_return = []
     for i in reversed(all_post):

@@ -8,7 +8,7 @@ app = Flask(__name__)
 def index():
     data = use_data.read_json()
     comments = use_data.only_need_data(use_data.read_json()[1])
-    return render_template('index.html', data=data[0], comments=comments)
+    return render_template('index.html', data=reversed(data[0]), comments=comments)
 
 
 @app.route('/post.html/<uid>/', methods=['GET', 'POST'])
