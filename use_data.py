@@ -98,3 +98,18 @@ def post_post(name, content, index, count):
     with open('data/comments.json', 'w', encoding='utf-8') as f:
         list_output.append(new_dict)
         json.dump(list_output, f, indent=2)
+
+
+def post_sort(all_post, search_string):
+    """
+    Функция принимает все посты, и слово отправленное формой POST.
+    Идя с последних постов ищет вхождение слова в описание постов с ограничением на вывод 10 постов.
+    Возвращает список объектов класса Post.
+    """
+    data_return = []
+    for i in reversed(all_post):
+        if search_string.lower() in i.content.lower().split():
+            data_return.append(i)
+            if len(data_return) == 10:
+                break
+    return data_return

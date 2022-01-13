@@ -26,26 +26,37 @@ def post(uid):
                     return render_template('post.html', data=i, comments=comments,
                                            all_comments="Нет комментариев")
     if request.method == 'POST':
-        new_name = request.form.get('name')
-        new_content = request.form.get('content')
-        use_data.post_post(new_name, new_content, int(uid), len(data[1]))
+        use_data.post_post(request.form.get('name'),
+                           request.form.get('content'),
+                           int(uid), len(data[1]))
         return redirect(f'/post.html/{uid}')
 
 
-@app.route('/search/')
+@app.route('/search.html', methods=['GET', 'POST'])
 def search():
-    return render_template('search.html')
-
-
-
-@app.route('/bookmarks.html')
-def bookmarks():
-    return render_template('bookmarks.html')
+    data = use_data.read_json()
+    data_output = []
+    if request.method == 'GET':
+        return render_template('search.html', data=data_output)
+    if request.method == 'POST':
+        data_output = use_data.post_sort(data[0], str(request.form.get('search_string')))
+        comments = use_data.only_need_data(use_data.read_json()[1])
+        return render_template('search.html', data=data_output, len=len(data_output), comments=comments)
 
 
 @app.route('/user-feed.html')
 def user_feed():
     return render_template('user-feed.html')
+
+
+@app.route('/tag.html/')
+def tag():
+    pass
+
+
+@app.route('/bookmarks.html')
+def bookmarks():
+    return render_template('bookmarks.html')
 
 
 if __name__ == '__main__':
