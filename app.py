@@ -7,7 +7,8 @@ app = Flask(__name__)
 @app.route('/')
 def index():
     data = use_data.read_json()
-    return render_template('index.html', data=data[0])
+    comments = use_data.only_need_data(use_data.read_json()[1])
+    return render_template('index.html', data=data[0], comments=comments)
 
 
 @app.route('/post.html/<uid>/')

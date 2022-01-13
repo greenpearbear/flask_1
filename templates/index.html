@@ -39,14 +39,18 @@
         </a>
         <p class="item__descr">{{ index.content[0:50]+'...' }}</p>
         <div class="item__post-info">
-          <p class="item__comments-counter">13 комментариев</p>
+            {% if index.id in comments %}
+                <p class="item__comments-counter">{{ comments[index.id] }}</p>
+            {% else %}
+                <p class="item__comments-counter">Нет комментариев</p>
+            {% endif %}
           <div class="item__counter">
             <img src="/static/img/eye.png" alt="" class="item__counter-icon" width="26">
             <span class="item__counter-text">{{ index.views }}</span>
           </div>
         </div>
         <div class="item__post-bottom">
-          <a href="post.html" class="item__btn-more">Подробнее</a>
+          <a href="post.html/{{ index.id }}" class="item__btn-more">Подробнее</a>
           <button type="button" class="item__bookmark-btn">
             <img src="/static/img/bookmark.png" alt="" class="item__bookmark-icon" width="24">
           </button>

@@ -1,4 +1,6 @@
 import json
+import pymorphy2
+morph = pymorphy2.MorphAnalyzer()
 
 
 def create_class(profile, comments):
@@ -49,3 +51,22 @@ def read_json():
     # with open('bookmarks.json') as f:
     #    bookmarks_input = json.load(f)
     return create_class(profile_input, comments_input)
+
+
+def only_need_data(data):
+    """
+    Функция откидывает текст комментариев и имя пользователя, что их оставил.
+    Возвращает список из id поста и количества комментариев к нему.
+    Используем библиотеку pymorphy2 для подбора существительных после числительных.
+    """
+    data_dict = {}
+    k = 1
+    comment = morph.parse('комментарий')[0]
+    for i in data:
+        if i.id not in data_dict:
+            data_dict.update({i.id: k})
+        else:
+            data_dict.update({i.id: data_dict[i.id]+1})
+    for i in data_dict.keys():
+        data_dict[i] = f'{data_dict[i]} {comment.make_agree_with_number(data_dict[i]).word}'
+    return data_dict
