@@ -82,3 +82,19 @@ def comments_sort(index, data):
         if k.id == index:
             data_return.update({k.name: k.content})
     return data_return
+
+
+def post_post(name, content, index, count):
+    """
+    Функция принимает данные нового комментария, и добавляет в comments.json
+    """
+    new_dict = {}
+    new_dict.update({"post_id": index})
+    new_dict.update({"commenter_name": name})
+    new_dict.update({"comment": content})
+    new_dict.update({"pk": count + 1})
+    with open('data/comments.json', encoding='utf-8') as f:
+        list_output = json.load(f)
+    with open('data/comments.json', 'w', encoding='utf-8') as f:
+        list_output.append(new_dict)
+        json.dump(list_output, f, indent=2)

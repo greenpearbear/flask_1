@@ -60,12 +60,13 @@
             </p>
               {% endfor %}
           </div>
-          <form action="/" class="item__comment-form comment-form">
+          <form  method="POST" class="item__comment-form comment-form">
             <div class="comment-form__input-wrap">
-              <input type="search" class="comment-form__input" placeholder="Ваше имя">
+              <input type="search" class="comment-form__input" placeholder="Ваше имя" name="name">
             </div>
             <div class="comment-form__input-wrap">
-              <textarea class="comment-form__textarea" placeholder="Ваш комментарий" rows="6"></textarea>
+              <textarea class="comment-form__textarea" placeholder="Ваш комментарий" rows="6" name="content"
+              ></textarea>
             </div>
             <button type="submit" class="comment-form__btn">Отправить</button>
           </form>
