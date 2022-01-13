@@ -20,9 +20,11 @@ def post(uid):
                 comments = use_data.comments_sort(int(uid), data[1])
                 count_comments = use_data.only_need_data(use_data.read_json()[1])
                 if int(uid) in count_comments:
-                    return render_template('post.html', data=i, comments=comments, all_comments=count_comments[int(uid)])
+                    return render_template('post.html', data=i, comments=comments,
+                                           all_comments=count_comments[int(uid)])
                 else:
-                    return render_template('post.html', data=i, comments=comments, all_comments="Нет комментариев")
+                    return render_template('post.html', data=i, comments=comments,
+                                           all_comments="Нет комментариев")
     if request.method == 'POST':
         new_name = request.form.get('name')
         new_content = request.form.get('content')
