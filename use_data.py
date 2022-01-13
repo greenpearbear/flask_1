@@ -117,3 +117,14 @@ def post_sort(all_post, search_string):
             if len(data_return) == 10:
                 break
     return data_return
+
+
+def sort_user(all_post, name):
+    """
+    Функция делает выборку по имине автора поста.
+    """
+    data_return = []
+    for i in reversed(all_post):
+        if i.name == name:
+            data_return.append(i)
+    return data_return

@@ -45,9 +45,11 @@ def search():
                                word=str(request.form.get('search_string')))
 
 
-@app.route('/user-feed.html')
-def user_feed():
-    return render_template('user-feed.html')
+@app.route('/user-feed.html/<name_user>/')
+def user_feed(name_user):
+    data = use_data.read_json()
+    comments = use_data.only_need_data(use_data.read_json()[1])
+    return render_template('user-feed.html', data=use_data.sort_user(data[0], name_user), comments=comments)
 
 
 @app.route('/tag.html/')
