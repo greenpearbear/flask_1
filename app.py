@@ -52,9 +52,9 @@ def user_feed(name_user):
     return render_template('user-feed.html', data=use_data.sort_user(data[0], name_user), comments=comments)
 
 
-@app.route('/tag.html/')
-def tag():
-    pass
+@app.route('/tag.html/<tag>')
+def tag_page(tag):
+    return render_template('tag.html')
 
 
 @app.route('/bookmarks.html')

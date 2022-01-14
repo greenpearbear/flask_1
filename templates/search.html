@@ -27,9 +27,13 @@
     <div class="search">
       <form  method="POST" class="search__form">
           {% if not word %}
-              <input type="search" class="search__input" placeholder="Введите слово и нажмите Enter" name="search_string">
+              <label for="string_post"></label>
+              <input type="search" class="search__input" placeholder="Введите слово и нажмите Enter"
+                     name="search_string" id="string_post">
           {% else %}
-              <input type="search" class="search__input" placeholder="Введите слово и нажмите Enter" name="search_string" value="{{ word }}">
+              <label for="string_get"></label>
+              <input type="search" class="search__input" placeholder="Введите слово и нажмите Enter"
+                     name="search_string" value="{{ word }}" id="string_get">
           {% endif %}
       </form>
         {% if data %}

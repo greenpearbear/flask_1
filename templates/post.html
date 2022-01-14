@@ -41,9 +41,7 @@
           <img src='{{ data.pic }}' alt="" width="348" class="item__post-img">
         </a>
         <div class="item__descr">
-          <p class="item__text">
-              {{ data.content }}
-          </p>
+          <p class="item__text">{{ data.content }}</p>
         </div>
         <div class="item__bottom">
           <div class="item__post-info">
@@ -62,10 +60,14 @@
           </div>
           <form  method="POST" class="item__comment-form comment-form">
             <div class="comment-form__input-wrap">
-              <input type="search" class="comment-form__input" placeholder="Ваше имя" name="name">
+                <label for="you_name"></label>
+              <input type="search" class="comment-form__input"
+                     placeholder="Ваше имя" name="name" id="you_name">
             </div>
             <div class="comment-form__input-wrap">
-              <textarea class="comment-form__textarea" placeholder="Ваш комментарий" rows="6" name="content"
+                <label for="you_comment"></label>
+              <textarea class="comment-form__textarea" placeholder="Ваш комментарий"
+                        rows="6" name="content" id="you_comment"
               ></textarea>
             </div>
             <button type="submit" class="comment-form__btn">Отправить</button>

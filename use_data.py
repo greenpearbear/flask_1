@@ -23,6 +23,14 @@ def create_class(profile, comments):
             self.views = post_data["views_count"]
             self.likes = post_data["likes_count"]
 
+        def tag(self):
+            list_split_str_space = self.content.split()
+            for index, value in enumerate(list_split_str_space):
+                if '#' in value:
+                    list_split_str_space[index] = f"<a href='/tag.html/{value[1:]}'>{value}</a>"
+            self.content = ' '.join(list_split_str_space)
+            return list_split_str_space
+
     class Comments:
         """
         Класс содержит данные комментариев к постам
@@ -32,8 +40,11 @@ def create_class(profile, comments):
             self.name = comments_data["commenter_name"]
             self.content = comments_data["comment"]
             self.number = comments_data["pk"]
+
     for i in profile:
-        data_list_post.append(Post(i))
+        post = Post(i)
+        post.tag()
+        data_list_post.append(post)
     for i in comments:
         data_list_comments.append(Comments(i))
     return data_list_post, data_list_comments
@@ -128,3 +139,6 @@ def sort_user(all_post, name):
         if i.name == name:
             data_return.append(i)
     return data_return
+
+
+read_json()
