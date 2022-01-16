@@ -64,5 +64,15 @@ def bookmarks():
     return render_template('bookmarks.html')
 
 
+@app.route('/bookmarks.html/add/<id>')
+def add_bookmarks(id):
+    return redirect('/', code=302)
+
+
+@app.route('/bookmarks.html/remove/<id>')
+def remove_bookmarks(id):
+    return redirect('/', code=302)
+
+
 if __name__ == '__main__':
     app.run(debug=True)

@@ -151,3 +151,4 @@ def sort_tag(all_post, tag):
         if '#'+tag in post.content:
             output_list.append(post)
     return output_list
+
