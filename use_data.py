@@ -173,4 +173,10 @@ def bookmarks_add(post):
 
 
 def bookmarks_remove(post):
-    pass
+    with open('data/bookmarks.json', encoding='utf-8') as f:
+        list_output = json.load(f)
+    for i in list_output:
+        if i["pk"] == post:
+            list_output.remove(i)
+    with open('data/bookmarks.json', 'w', encoding='utf-8') as f:
+        json.dump(list_output, f, indent=2)

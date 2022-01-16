@@ -68,15 +68,15 @@ def bookmarks():
     return render_template('bookmarks.html', data=bookmarks_index, comments=comments)
 
 
-@app.route('/bookmarks.html/add/', methods=['POST', 'GET'])
-def add_bookmarks():
-    if request.method == 'POST':
-        use_data.bookmarks_add(request.form['post_id'])
-        return redirect('/', code=302)
+@app.route('/bookmarks.html/add/<post_id>/')
+def add_bookmarks(post_id):
+    use_data.bookmarks_add(int(post_id))
+    return redirect('/', code=302)
 
 
-@app.route('/bookmarks.html/remove/<id>')
-def remove_bookmarks(post_remove):
+@app.route('/bookmarks.html/remove/<post_id>')
+def remove_bookmarks(post_id):
+    use_data.bookmarks_remove(int(post_id))
     return redirect('/', code=302)
 
 

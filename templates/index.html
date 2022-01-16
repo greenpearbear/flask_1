@@ -58,7 +58,7 @@
                 </div>
                 <div class="item__post-bottom">
                     <a href="post.html/{{ index.id }}" class="item__btn-more">Подробнее</a>
-                    <form method="post" action="/bookmarks.html/add/">
+                    <form action="/bookmarks.html/add/{{ index.id }}">
                         <button name="post_id" value="{{ index.id }}" class="item__bookmark-btn">
                             <img src="/static/img/bookmark.png" alt="" class="item__bookmark-icon" width="24">
                         </button>
