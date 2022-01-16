@@ -145,8 +145,11 @@ def sort_user(all_post, name):
 
 
 def sort_tag(all_post, tag):
+    """
+    Функция принимает все посты и тег.
+    Потом проверяет наличие тега в постах и если есть добавляет в список и возвращает.
+    """
     output_list = []
-    print('#'+tag)
     for post in reversed(all_post):
         if '#'+tag in post.content:
             output_list.append(post)
@@ -154,6 +157,12 @@ def sort_tag(all_post, tag):
 
 
 def bookmarks_add(post):
+    """
+    Функция принимает id поста, который решили добавить в закладки.
+    Достает из файла все посты, а потом находит номер поста.
+    Сверяет наличие файла с закладками.
+    И добавляет пост в список закладок.
+    """
     list_output = []
     with open('data/data.json', encoding='utf-8') as f:
         list_post = json.load(f)
@@ -173,6 +182,12 @@ def bookmarks_add(post):
 
 
 def bookmarks_remove(post):
+    """
+    Функция принимает id поста, который решили удалить из закладки.
+    Открывает файл с закладками.
+    Находит его по номеру id.
+    Удаляет.
+    """
     with open('data/bookmarks.json', encoding='utf-8') as f:
         list_output = json.load(f)
     for i in list_output:

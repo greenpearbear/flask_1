@@ -196,5 +196,11 @@
     "commenter_name": "\u0420\u043e\u043c\u0430",
     "comment": "\u041f\u043e\u0447\u0438\u043d\u0438\u043b \u043a\u043e\u043c\u043c\u0435\u043d\u0442\u0430\u0440\u0438\u0438",
     "pk": 33
+  },
+  {
+    "post_id": 7,
+    "commenter_name": "\u0420\u043e\u043c\u0430",
+    "comment": "\u0412\u044b\u0433\u0440\u0443\u0436\u0430\u044e \u043d\u0430 Heroku",
+    "pk": 34
   }
 ]
