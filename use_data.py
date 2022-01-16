@@ -91,10 +91,10 @@ def comments_sort(index, data):
     Функция принимает id поста, а также все комментарии.
     Создает словарь из комментариев которые относятся к посту с id, и возвращает его.
     """
-    data_return = {}
+    data_return = []
     for k in data:
         if k.id == index:
-            data_return.update({k.name: k.content})
+            data_return.append(k)
     return data_return
 
 
@@ -180,3 +180,4 @@ def bookmarks_remove(post):
             list_output.remove(i)
     with open('data/bookmarks.json', 'w', encoding='utf-8') as f:
         json.dump(list_output, f, indent=2)
+

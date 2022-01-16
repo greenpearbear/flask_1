@@ -56,9 +56,9 @@
                       </div>
                   </div>
                   <div class="item__comments">
-                      {% for name, content in comments.items() %}
+                      {% for i in comments %}
                           <p class="item__comment">
-                              <b>{{ name }}:</b> {{ content }}
+                              <b>{{ i.name }}:</b> {{ i.content }}
                           </p>
                       {% endfor %}
                   </div>
