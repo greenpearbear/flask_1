@@ -16,7 +16,7 @@
           <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#back"></use>
         </svg>
       </a>
-      <a href="/#food" class="header__logo-link">
+      <a href="/tag.html/{{ tag }}" class="header__logo-link">
         <svg class="header__logo" width="144" height="26">
           <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#tag"></use>
         </svg>
@@ -25,87 +25,36 @@
   </header>
   <main class="container">
     <section class="items">
+        {% for i in data %}
       <div class="items__item item">
         <div class="item__top">
-          <a href="/user-feed.html" class="item__head">
+          <a href="/user-feed.html/{{ i.name }}" class="item__head">
             <div class="item__ava-wrap">
-              <img src="img/ava1.png" alt="" class="item__ava" width="47">
+              <img src="{{ i.avatar }}" alt="" class="item__ava" width="47">
             </div>
-            <span class="item__username">Username</span>
+            <span class="item__username">{{ i.name }}</span>
           </a>
         </div>
-        <a href="/post.html" class="item__post-link">
-          <img src="img/post4.jpg" alt="" width="348" class="item__post-img">
+        <a href="/post.html/{{ i.id }}" class="item__post-link">
+          <img src="{{ i.pic }}" alt="" width="348" class="item__post-img">
         </a>
-        <p class="item__descr"><a href="/tag.html" class="item__tag">#food</a> Текст описания коротки...</p>
+        <p class="item__descr"><a href="/tag.html/{{ tag }}" class="item__tag">#{{ tag }}
+        </a>{{ i.content[0:50]+'...' }}</p>
         <div class="item__post-info">
-          <p class="item__comments-counter">13 комментариев</p>
+          <p class="item__comments-counter">{{ comments[i.id] }}</p>
           <div class="item__counter">
-            <img src="img/eye.png" alt="" class="item__counter-icon" width="26">
-            <span class="item__counter-text">212</span>
+            <img src="/static/img/eye.png" alt="" class="item__counter-icon" width="26">
+            <span class="item__counter-text">{{ i.views }}</span>
           </div>
         </div>
         <div class="item__post-bottom">
-          <a href="/post.html" class="item__btn-more">Подробнее</a>
+          <a href="/post.html/{{ i.id }}" class="item__btn-more">Подробнее</a>
           <button type="button" class="item__bookmark-btn">
-            <img src="img/bookmark.png" alt="" class="item__bookmark-icon" width="24">
+            <img src="/static/img/bookmark.png" alt="" class="item__bookmark-icon" width="24">
           </button>
         </div>
       </div>
-      <div class="items__item item">
-        <div class="item__top">
-          <a href="/user-feed.html" class="item__head">
-            <div class="item__ava-wrap">
-              <img src="img/ava2.png" alt="" class="item__ava" width="47">
-            </div>
-            <span class="item__username">Username</span>
-          </a>
-        </div>
-        <a href="/post.html" class="item__post-link">
-          <img src="img/post2.jpg" alt="" width="348" class="item__post-img">
-        </a>
-        <p class="item__descr"><a href="/tag.html" class="item__tag">#food</a> Текст описания коротки...</p>
-        <div class="item__post-info">
-          <p class="item__comments-counter">Нет комментариев</p>
-          <div class="item__counter">
-            <img src="img/eye.png" alt="" class="item__counter-icon" width="26">
-            <span class="item__counter-text">1023</span>
-          </div>
-        </div>
-        <div class="item__post-bottom">
-          <a href="/post.html" class="item__btn-more">Подробнее</a>
-          <button type="button" class="item__bookmark-btn active">
-            <img src="img/bookmark.png" alt="" class="item__bookmark-icon" width="24">
-          </button>
-        </div>
-      </div>
-      <div class="items__item item">
-        <div class="item__top">
-          <a href="/user-feed.html" class="item__head">
-            <div class="item__ava-wrap">
-              <img src="img/ava2.png" alt="" class="item__ava" width="47">
-            </div>
-            <span class="item__username">Username</span>
-          </a>
-        </div>
-        <a href="/post.html" class="item__post-link">
-          <img src="img/post3.jpg" alt="" width="348" class="item__post-img">
-        </a>
-        <p class="item__descr"><a href="/tag.html" class="item__tag">#food</a> Текст описания коротки...</p>
-        <div class="item__post-info">
-          <p class="item__comments-counter">5 комментариев</p>
-          <div class="item__counter">
-            <img src="img/eye.png" alt="" class="item__counter-icon" width="26">
-            <span class="item__counter-text">1023</span>
-          </div>
-        </div>
-        <div class="item__post-bottom">
-          <a href="/post.html" class="item__btn-more">Подробнее</a>
-          <button type="button" class="item__bookmark-btn">
-            <img src="img/bookmark.png" alt="" class="item__bookmark-icon" width="24">
-          </button>
-        </div>
-      </div>
+        {% endfor %}
     </section>
   </main>
   <svg xmlns="http://www.w3.org/2000/svg" style="display:none">

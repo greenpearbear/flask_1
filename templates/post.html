@@ -40,8 +40,8 @@
         <a href="" class="item__post-link">
           <img src='{{ data.pic }}' alt="" width="348" class="item__post-img">
         </a>
-        <div class="item__descr">
-          <p class="item__text">{{ data.content }}</p>
+        <div class="info">
+            {{data.content|safe}}
         </div>
         <div class="item__bottom">
           <div class="item__post-info">

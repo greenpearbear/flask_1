@@ -54,7 +54,9 @@ def user_feed(name_user):
 
 @app.route('/tag.html/<tag>')
 def tag_page(tag):
-    return render_template('tag.html')
+    output_post = use_data.sort_tag(use_data.read_json()[0], tag)
+    comments = use_data.only_need_data(use_data.read_json()[1])
+    return render_template('tag.html', data=output_post, comments=comments, tag=tag)
 
 
 @app.route('/bookmarks.html')

@@ -24,6 +24,9 @@ def create_class(profile, comments):
             self.likes = post_data["likes_count"]
 
         def tag(self):
+            """
+            Метод класса Post ищем в контенте поста хештеги и заменяет их на ссылки.
+            """
             list_split_str_space = self.content.split()
             for index, value in enumerate(list_split_str_space):
                 if '#' in value:
@@ -67,7 +70,7 @@ def only_need_data(data):
     """
     Функция откидывает текст комментариев и имя пользователя, что их оставил.
     Используем библиотеку pymorphy2 для подбора существительных после числительных.
-    Возвращает список из id поста и количества комментариев к нему.
+    Возвращает словарь из id поста и количества комментариев к нему.
     """
     morph = pymorphy2.MorphAnalyzer()
     data_dict = {}
@@ -132,7 +135,7 @@ def post_sort(all_post, search_string):
 
 def sort_user(all_post, name):
     """
-    Функция делает выборку по имине автора поста.
+    Функция делает выборку по имени автора поста.
     """
     data_return = []
     for i in reversed(all_post):
@@ -141,4 +144,10 @@ def sort_user(all_post, name):
     return data_return
 
 
-read_json()
+def sort_tag(all_post, tag):
+    output_list = []
+    print('#'+tag)
+    for post in reversed(all_post):
+        if '#'+tag in post.content:
+            output_list.append(post)
+    return output_list
