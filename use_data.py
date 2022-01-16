@@ -1,14 +1,14 @@
 import json
 import pymorphy2
+import os
 
 
-def create_class(profile, comments):
+def create_class(profile, comments, bookmarks):
     """
     Данная функция принимает списки словарей, создает классы на их основе, а потом возвращает кортеж
     """
     data_list_post = []
     data_list_comments = []
-    # data_list_bookmarks = []
 
     class Post:
         """
@@ -50,7 +50,7 @@ def create_class(profile, comments):
         data_list_post.append(post)
     for i in comments:
         data_list_comments.append(Comments(i))
-    return data_list_post, data_list_comments
+    return data_list_post, data_list_comments, bookmarks
 
 
 def read_json():
@@ -61,9 +61,9 @@ def read_json():
         profile_input = json.load(f)
     with open('data/comments.json', encoding='utf-8') as f:
         comments_input = json.load(f)
-    # with open('bookmarks.json') as f:
-    #    bookmarks_input = json.load(f)
-    return create_class(profile_input, comments_input)
+    with open('data/bookmarks.json') as f:
+        bookmarks_input = json.load(f)
+    return create_class(profile_input, comments_input, bookmarks_input)
 
 
 def only_need_data(data):
@@ -152,3 +152,25 @@ def sort_tag(all_post, tag):
             output_list.append(post)
     return output_list
 
+
+def bookmarks_add(post):
+    list_output = []
+    with open('data/data.json', encoding='utf-8') as f:
+        list_post = json.load(f)
+    for i in list_post:
+        if i["pk"] == post:
+            if os.stat("data/bookmarks.json").st_size == 0:
+                with open('data/bookmarks.json', 'w', encoding='utf-8') as f:
+                    list_output.append(i)
+                    json.dump(list_output, f, indent=2)
+            else:
+                with open('data/bookmarks.json', encoding='utf-8') as f:
+                    list_output = json.load(f)
+                if i not in list_output:
+                    with open('data/bookmarks.json', 'w', encoding='utf-8') as f:
+                        list_output.append(i)
+                        json.dump(list_output, f, indent=2)
+
+
+def bookmarks_remove(post):
+    pass

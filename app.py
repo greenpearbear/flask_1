@@ -8,7 +8,9 @@ app = Flask(__name__)
 def index():
     data = use_data.read_json()
     comments = use_data.only_need_data(use_data.read_json()[1])
-    return render_template('index.html', data=reversed(data[0]), comments=comments)
+    bookmarks_index = use_data.read_json()[2]
+    return render_template('index.html', data=reversed(data[0]),
+                           comments=comments, bookmarks=len(bookmarks_index))
 
 
 @app.route('/post.html/<uid>/', methods=['GET', 'POST'])
@@ -61,16 +63,20 @@ def tag_page(tag):
 
 @app.route('/bookmarks.html')
 def bookmarks():
-    return render_template('bookmarks.html')
+    comments = use_data.only_need_data(use_data.read_json()[1])
+    bookmarks_index = use_data.read_json()[2]
+    return render_template('bookmarks.html', data=bookmarks_index, comments=comments)
 
 
-@app.route('/bookmarks.html/add/<id>')
-def add_bookmarks(id):
-    return redirect('/', code=302)
+@app.route('/bookmarks.html/add/', methods=['POST', 'GET'])
+def add_bookmarks():
+    if request.method == 'POST':
+        use_data.bookmarks_add(request.form['post_id'])
+        return redirect('/', code=302)
 
 
 @app.route('/bookmarks.html/remove/<id>')
-def remove_bookmarks(id):
+def remove_bookmarks(post_remove):
     return redirect('/', code=302)
 
 
