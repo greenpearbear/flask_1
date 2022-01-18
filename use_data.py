@@ -30,7 +30,7 @@ def create_class(profile, comments, bookmarks):
             list_split_str_space = self.content.split()
             for index, value in enumerate(list_split_str_space):
                 if '#' in value:
-                    list_split_str_space[index] = f"<a href='/tag.html/{value[1:]}'>{value}</a>"
+                    list_split_str_space[index] = f"<a href='/tag/{value[1:]}'>{value}</a>"
             self.content = ' '.join(list_split_str_space)
             return list_split_str_space
 

@@ -13,7 +13,7 @@ def index():
                            comments=comments, bookmarks=len(bookmarks_index))
 
 
-@app.route('/post.html/<uid>/', methods=['GET', 'POST'])
+@app.route('/post/<uid>/', methods=['GET', 'POST'])
 def post(uid):
     data = use_data.read_json()
     if request.method == 'GET':
@@ -31,10 +31,10 @@ def post(uid):
         use_data.post_post(request.form.get('name'),
                            request.form.get('content'),
                            int(uid), len(data[1]))
-        return redirect(f'/post.html/{uid}')
+        return redirect(f'/post/{uid}')
 
 
-@app.route('/search.html', methods=['GET', 'POST'])
+@app.route('/search', methods=['GET', 'POST'])
 def search():
     data = use_data.read_json()
     data_output = []
@@ -47,34 +47,34 @@ def search():
                                word=str(request.form.get('search_string')))
 
 
-@app.route('/user-feed.html/<name_user>/')
+@app.route('/user-feed/<name_user>/')
 def user_feed(name_user):
     data = use_data.read_json()
     comments = use_data.only_need_data(use_data.read_json()[1])
     return render_template('user-feed.html', data=use_data.sort_user(data[0], name_user), comments=comments)
 
 
-@app.route('/tag.html/<tag>')
+@app.route('/tag/<tag>')
 def tag_page(tag):
     output_post = use_data.sort_tag(use_data.read_json()[0], tag)
     comments = use_data.only_need_data(use_data.read_json()[1])
     return render_template('tag.html', data=output_post, comments=comments, tag=tag)
 
 
-@app.route('/bookmarks.html')
+@app.route('/bookmarks')
 def bookmarks():
     comments = use_data.only_need_data(use_data.read_json()[1])
     bookmarks_index = use_data.read_json()[2]
     return render_template('bookmarks.html', data=bookmarks_index, comments=comments)
 
 
-@app.route('/bookmarks.html/add/<post_id>/')
+@app.route('/bookmarks/add/<post_id>/')
 def add_bookmarks(post_id):
     use_data.bookmarks_add(int(post_id))
     return redirect('/', code=302)
 
 
-@app.route('/bookmarks.html/remove/<post_id>')
+@app.route('/bookmarks/remove/<post_id>')
 def remove_bookmarks(post_id):
     use_data.bookmarks_remove(int(post_id))
     return redirect('/', code=302)
